@@ -87,39 +87,44 @@ const Detail = () => {
       {loading && <Loading />}
       {error && <p>{error.message}</p>}
       {!loading && (
-        <div>
-          <div className="flex flex-row items-center justify-between">
-            <div className="flex flex-col items-center justify-center">
-              <img
-                className="h-32 w-32 rounded-full"
-                src={countryData?.flag}
-                alt={countryData?.name}
-              />
-              <h1 className="mt-4 text-2xl font-bold">{countryData?.name}</h1>
+        <>
+          <div className="flex flex-col justify-between mobileL:flex-row mobileL:items-center">
+            <div className="mobileL:w-[50%]">
+              <img src={countryData?.flag} alt={countryData?.name} />
             </div>
-            <div className="flex flex-col items-center justify-center">
-              {countryInfo.map((info) => (
-                <p key={info.id} className="text-sm">
-                  <span className="font-bold">{info.title}:</span> {info.value}
-                </p>
-              ))}
-              {borderCountries && (
-                <p className="text-sm">
-                  <span className="font-bold">Border Countries:</span>
-                  {borderCountries.map((border) => (
-                    <Link
-                      key={border}
-                      className="text-sm"
-                      to={`/country/${border}`}
-                    >
-                      {border}
-                    </Link>
+            <div className="flex flex-col">
+              <h1 className="mt-4 text-2xl font-bold">{countryData?.name}</h1>
+              <div className="flex flex-col mobileL:flex-row mobileL:space-x-20">
+                <div className="detail">
+                  {countryInfo.slice(1, 5).map((info) => (
+                    <p key={info.id} className="">
+                      {info.title}:<span>{info.value}</span>
+                    </p>
                   ))}
-                </p>
-              )}
+                </div>
+                <div className="detail">
+                  {countryInfo.slice(5, 8).map((info) => (
+                    <p key={info.id} className="">
+                      {info.title}:<span>{info.value}</span>
+                    </p>
+                  ))}
+                </div>
+              </div>
+              <div>
+                {borderCountries && (
+                  <p className="space-x-2">
+                    Border Countries:
+                    {borderCountries.map((border) => (
+                      <Link key={border} className="element" to={`#`}>
+                        <span>{border}</span>
+                      </Link>
+                    ))}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
