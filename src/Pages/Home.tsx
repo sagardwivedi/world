@@ -49,7 +49,7 @@ const Home = () => {
 
   return (
     <div className="container-custom">
-      <div className="my-11 flex flex-col items-center space-y-10 mobileL:justify-between tablet:flex-row tablet:space-y-0">
+      <div className="my-11 flex flex-col items-center space-y-8 mobileL:justify-between tablet:flex-row tablet:space-y-0">
         <Search search={search} setSearch={setSearch} />
         <Filter
           regions={REGIONS}

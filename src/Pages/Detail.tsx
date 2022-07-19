@@ -88,21 +88,25 @@ const Detail = () => {
       {error && <p>{error.message}</p>}
       {!loading && (
         <>
-          <div className="flex flex-col justify-between mobileL:flex-row mobileL:items-center">
-            <div className="mobileL:w-[50%]">
-              <img src={countryData?.flag} alt={countryData?.name} />
+          <div className="my-12 flex flex-col justify-between tablet:flex-row">
+            <div className="mobileL:h-[50%] mobileL:w-[50%]">
+              <img
+                src={countryData?.flag}
+                className="h-full w-full drop-shadow-2xl"
+                alt={countryData?.name}
+              />
             </div>
-            <div className="flex flex-col">
-              <h1 className="mt-4 text-2xl font-bold">{countryData?.name}</h1>
-              <div className="flex flex-col mobileL:flex-row mobileL:space-x-20">
-                <div className="detail">
-                  {countryInfo.slice(1, 5).map((info) => (
+            <div className="my-10 flex flex-col">
+              <h1 className="text-2xl font-bold">{countryData?.name}</h1>
+              <div className="mt-8 flex flex-col mobileL:flex-row mobileL:space-x-36">
+                <div className="detail space-y-2">
+                  {countryInfo.slice(0, 5).map((info) => (
                     <p key={info.id} className="">
                       {info.title}:<span>{info.value}</span>
                     </p>
                   ))}
                 </div>
-                <div className="detail">
+                <div className="detail space-y-2">
                   {countryInfo.slice(5, 8).map((info) => (
                     <p key={info.id} className="">
                       {info.title}:<span>{info.value}</span>
@@ -110,14 +114,14 @@ const Detail = () => {
                   ))}
                 </div>
               </div>
-              <div>
+              <div className="detail mt-16">
                 {borderCountries && (
-                  <p className="space-x-2">
+                  <p className="space-x-2 flex flex-row flex-wrap">
                     Border Countries:
-                    {borderCountries.map((border) => (
-                      <Link key={border} className="element" to={`#`}>
-                        <span>{border}</span>
-                      </Link>
+                    {borderCountries.map((border, index) => (
+                      <span key={index} className="element px-6 py-1">
+                        {border}
+                      </span>
                     ))}
                   </p>
                 )}
